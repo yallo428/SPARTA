@@ -211,8 +211,11 @@
     import {collection, addDoc} from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
     import {getDocs} from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-    showTemperature()
 
+    $(function (){
+        saveMovie()
+        showTemperature()
+    })
 
     // 내 파이어베이스에 대한 정보를 담고 있다
     const firebaseConfig = {
@@ -224,6 +227,8 @@
         appId: "1:731703311484:web:5528ebb0f44edd13a35df9",
         measurementId: "G-DG4N2WFSPL"
     };
+
+
 
     // 저장된 정보를 바탕으로 파이어베이스에 연결
     const app = initializeApp(firebaseConfig);
@@ -245,14 +250,14 @@
         $('#cards').append(temp_html)
     }
 
-    $(async function () {
+   async function saveMovie() {
         let docs = await getDocs(collection(db, "movie"))
 
         docs.forEach(doc => {
             let movieData = doc.data()
             setMovieCard(movieData);
         })
-    })
+    }
 
     function openClose() {
         $('#postingBox').toggle();
@@ -275,8 +280,6 @@
         await addDoc(collection(db, "movie"), data)
         window.location.reload()
     })
-
-
 
 
 

@@ -1,0 +1,294 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스파르타플릭스</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+        * {
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+
+        .header {
+            background-color: green;
+            color: white;
+
+            background-image: url('https://occ-0-1123-1217.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABeIfo7VL_VDyKnljV66IkR-4XLb6xpZqhpLSo3JUtbivnEW4s60PD27muH1mdaANM_8rGpgbm6L2oDgA_iELHZLZ2IQjG5lvp5d2.jpg?r=e6e.jpg');
+            background-position: center;
+            background-size: cover;
+        }
+
+        body {
+            background-color: black;
+        }
+
+        .mycards {
+            width: 1200px;
+            margin: 30px auto 0px auto;
+        }
+
+        .mypostingbox {
+            margin: 30px auto 0px auto;
+            width: 500px;
+            padding: 20px;
+            border: 1px solid white;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .mybtn {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mybtn > button {
+            margin-right: 5px;
+            width: 100%;
+        }
+
+        .form-floating > input {
+            background-color: transparent;
+            color: white;
+        }
+
+        .form-floating, .input-group > label {
+            color: white;
+        }
+
+        .input-group > label {
+            background-color: transparent;
+            color: white
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header class="p-3 text-bg-dark">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+            </a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="#" class="nav-link px-2 text-danger">SPARTAFLIX</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">홈</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">시리즈</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">영화</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">내가 찜한 컨텐츠</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">현재 서울의 날씨 : <span id="temperature"></span></a></li>
+            </ul>
+
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."
+                       aria-label="Search">
+            </form>
+
+            <div class="text-end">
+                <button type="button" class="btn btn-outline-light me-2">Login</button>
+                <button type="button" class="btn btn-danger">Sign-up</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="header">
+    <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">킹덤</h1>
+            <p class="col-md-8 fs-4">병든 왕을 둘러싸고 흉흉한 소문이 떠돈다. 어둠에 뒤덮인 조선, 기이한 역병에 신음하는 산하. 정체 모를 악에 맞서 백성을 구원할 희망은 오직
+                세자뿐이다.</p>
+            <button onClick=openClose() type="button" class="btn btn-outline-light">영화 기록하기</button>
+            <button type="button" class="btn btn-outline-light">상세정보</button>
+        </div>
+    </div>
+</div>
+
+<div class="mypostingbox" id="postingBox">
+    <div class="form-floating mb-3">
+        <input id="image" type="email" class="form-control" placeholder="영화 이미지 주소">
+        <label for="image">영화 이미지 주소</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input id="title" type="email" class="form-control" placeholder="영화 제목">
+        <label for="title">영화 제목</label>
+    </div>
+    <div class="input-group mb-3">
+        <label class="input-group-text" for="inputGroupSelect01">별점</label>
+        <select id="star" class="form-select" id="inputGroupSelect01">
+            <option selected>별점선택</option>
+            <option value="⭐">⭐</option>
+            <option value="⭐⭐">⭐⭐</option>
+            <option value="⭐⭐⭐">⭐⭐⭐</option>
+            <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+            <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+        </select>
+    </div>
+    <div class="form-floating mb-3">
+        <input id="comment" type="email" class="form-control" placeholder="추천 이유">
+        <label for="comment">추천 이유</label>
+    </div>
+    <div class="mybtn">
+        <button id="saveBtn" type="button" class="btn btn-danger">기록하기</button>
+    </div>
+</div>
+
+<div class="mycards">
+    <div class="row row-cols-1 row-cols-md-4 g-4" id="cards">
+        <div class="col">
+            <div class="card">
+                <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                     class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">영화 제목</h5>
+                    <p class="card-text">⭐⭐⭐</p>
+                    <p class="card-text">영화 코멘트</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                     class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">영화 제목</h5>
+                    <p class="card-text">⭐⭐⭐</p>
+                    <p class="card-text">영화 코멘트</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                     class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">영화 제목</h5>
+                    <p class="card-text">⭐⭐⭐</p>
+                    <p class="card-text">영화 코멘트</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                     class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">영화 제목</h5>
+                    <p class="card-text">⭐⭐⭐</p>
+                    <p class="card-text">영화 코멘트</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                     class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">영화 제목</h5>
+                    <p class="card-text">⭐⭐⭐</p>
+                    <p class="card-text">영화 코멘트</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="module">
+    import {initializeApp} from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    import {getFirestore} from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    import {collection, addDoc} from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    import {getDocs} from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+    showTemperature()
+
+
+    // 내 파이어베이스에 대한 정보를 담고 있다
+    const firebaseConfig = {
+        apiKey: "AIzaSyA5DD9LvA_P6ls41OEg8ob2wizirQk4fmA",
+        authDomain: "spartatest-444bc.firebaseapp.com",
+        projectId: "spartatest-444bc",
+        storageBucket: "spartatest-444bc.appspot.com",
+        messagingSenderId: "731703311484",
+        appId: "1:731703311484:web:5528ebb0f44edd13a35df9",
+        measurementId: "G-DG4N2WFSPL"
+    };
+
+    // 저장된 정보를 바탕으로 파이어베이스에 연결
+    const app = initializeApp(firebaseConfig);
+    // app저장된 파이어베이스에 있는 파이어스토어 데이터베이스를 갖고 온다
+    const db = getFirestore(app);
+
+    function setMovieCard(movieData) {
+        let temp_html = `<div class="col">
+            <div class="card">
+                <img src="${movieData['image']}"
+                     class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">${movieData['title']}</h5>
+                    <p class="card-text">${movieData['star']}</p>
+                    <p class="card-text">${movieData['comment']}</p>
+                </div>
+            </div>
+        </div>`
+        $('#cards').append(temp_html)
+    }
+
+    $(async function () {
+        let docs = await getDocs(collection(db, "movie"))
+
+        docs.forEach(doc => {
+            let movieData = doc.data()
+            setMovieCard(movieData);
+        })
+    })
+
+    function openClose() {
+        $('#postingBox').toggle();
+    }
+
+    $('#saveBtn').click(async function(){
+        let image = $('#image').val()
+        let title = $('#title').val()
+        let star = $('#star').val()
+        let comment = $('#comment').val()
+
+        let data = {
+            'image' : image,
+            'title' : title,
+            'star' : star,
+            'comment' : comment
+        }
+
+
+        await addDoc(collection(db, "movie"), data)
+        window.location.reload()
+    })
+
+
+
+
+
+    function showTemperature() {
+        let url = "http://spartacodingclub.shop/sparta_api/weather/seoul"
+
+        fetch(url).then(res => res.json()).then(data => {
+
+            let text = data['temp'] > 20 ? "더워요" : "추워요"
+            let textColor = data['temp'] > 20 ? "red" : "blue"
+            $('#temperature').text(text).css("color", textColor)
+        })
+    }
+</script>
+</html>
